@@ -4,7 +4,9 @@ author: "Galen I Papkov & Blake Gilliland"
 #header-includes:
   # - \usepackage{}
 date: "1/22/2020"
-output: pdf_document
+output: 
+  pdf_document:
+    keep_md: true
 ---
 
 ```{r setup, include=FALSE}

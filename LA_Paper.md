@@ -26,20 +26,7 @@ output:
 bibliography: ref.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-library(dplyr)
-library(xtable)
-library(ggplot2)
-library(knitr)
-library(kableExtra)
 
-dat = read.csv("LA_DFW_Data.csv")[,1:14]
-dat = dat[-1,]
-dat$DFW = dat$DF.Number+dat$W.Number
-attach(dat)
-```
 ## Abstract  
 FGCU’s Learning Assistant program began in 2016 and spanned a wide range of STEM disciplines. In the last year, it has expanded to non-STEM classes as well. We are interested in measuring the effectiveness of the program and determining methods of improvement for the future based on DFW rates.
 
@@ -74,30 +61,99 @@ Beginning in the fall of 2019, the Office of Undergraduate Scholarship began fun
 
 Our goal is to see how DFW are affected by instituting the LA model. We collected data describing these rates accross a total of 18 courses that had sections with and without an LA using Tableau.
 
-```{r}
-tab1 = aggregate(DFW,list(LA,Course.Name),sum)
-tab2 = aggregate(Students,list(LA,Course.Name),sum)
-tab3 = cbind(tab1,round(tab1[,3]/tab2[,3],2))
-colnames(tab3) = c("LA","Course","DFW Count","DFW Rate")
-kable(tab3,longtable=T, booktabs = T,row.names=F) %>% kable_styling(latex_options = c("repeat_header","HOLD_position","striped", "condensed"), font_size=7)
-```
+\begingroup\fontsize{7}{9}\selectfont
+
+\begin{longtable}{llrr}
+\toprule
+LA & Course & DFW Count & DFW Rate\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\textit{(continued)}}\\
+\toprule
+LA & Course & DFW Count & DFW Rate\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+\rowcolor{gray!6}  No & Calculus I & 124 & 0.33\\
+Yes & Calculus I & 39 & 0.28\\
+\rowcolor{gray!6}  No & Calculus II & 26 & 0.20\\
+Yes & Calculus II & 12 & 0.34\\
+\rowcolor{gray!6}  No & College Algebra & 784 & 0.28\\
+\addlinespace
+Yes & College Algebra & 88 & 0.31\\
+\rowcolor{gray!6}  No & College Physics w/Lab II & 5 & 0.16\\
+Yes & College Physics w/Lab II & 5 & 0.16\\
+\rowcolor{gray!6}  No & Elementary Calculus & 76 & 0.35\\
+Yes & Elementary Calculus & 50 & 0.47\\
+\addlinespace
+\rowcolor{gray!6}  No & Engineering Mechanics & 14 & 0.27\\
+Yes & Engineering Mechanics & 6 & 0.16\\
+\rowcolor{gray!6}  No & Finite Mathematics & 23 & 0.11\\
+Yes & Finite Mathematics & 18 & 0.17\\
+\rowcolor{gray!6}  No & Gen'l Biology w/Lab I & 477 & 0.34\\
+\addlinespace
+Yes & Gen'l Biology w/Lab I & 40 & 0.35\\
+\rowcolor{gray!6}  No & General Chemistry I & 682 & 0.37\\
+Yes & General Chemistry I & 178 & 0.39\\
+\rowcolor{gray!6}  No & General Chemistry II & 138 & 0.33\\
+Yes & General Chemistry II & 152 & 0.41\\
+\addlinespace
+\rowcolor{gray!6}  No & Intermediate Algebra & 464 & 0.22\\
+Yes & Intermediate Algebra & 62 & 0.29\\
+\rowcolor{gray!6}  No & Intro Earth Science & 47 & 0.15\\
+Yes & Intro Earth Science & 22 & 0.16\\
+\rowcolor{gray!6}  No & Intro to Computer Science & 36 & 0.22\\
+\addlinespace
+Yes & Intro to Computer Science & 31 & 0.17\\
+\rowcolor{gray!6}  No & Intro. Environmental Science & 13 & 0.09\\
+Yes & Intro. Environmental Science & 3 & 0.08\\
+\rowcolor{gray!6}  No & Introduction to Programming & 6 & 0.12\\
+Yes & Introduction to Programming & 21 & 0.13\\
+\addlinespace
+\rowcolor{gray!6}  No & Precalculus & 211 & 0.25\\
+Yes & Precalculus & 53 & 0.22\\
+\rowcolor{gray!6}  No & Social Science Statistics & 12 & 0.18\\
+Yes & Social Science Statistics & 5 & 0.16\\
+\rowcolor{gray!6}  No & Statistical Methods & 674 & 0.25\\
+\addlinespace
+Yes & Statistical Methods & 23 & 0.21\\*
+\end{longtable}
+\endgroup{}
 
 As mentioned, we wish to be able to answer the question of whether DFW rates improve (decrease) when an LA is present compared to when they are not. Due to limitations with the data, i.e. not having as much of it as we would have liked (n $\approx$ 30), we need to perform a Shapiro-Wilk Normality test. This test will take in the data, examine its shape relative to the number of data points, and determine if it is normal *enough* to use parametric tests. The Shapiro-Wilk Normality test would not be appropriate to use when having larger data sets. We will perform the test on the difference between the LA DFW rates and the Non-LA DFW rates since what we are interested in is whether DFW rates in LA courses are lesser than the alternative.
 
 Our hypothesis is that the data is normal and thus a significant p-value would indicate non-normal data. Shapiro-Wilk Normality test for DFW Rates accross sections (with and without LA's) ($\alpha = .05$), along with a histogram of the data being tested:
-```{r}
-shapiro.test(tab3$`DFW Rate`[tab3$LA=="Yes"]-tab3$`DFW Rate`[tab3$LA=="No"])
-hist(tab3$`DFW Rate`[tab3$LA=="Yes"]-tab3$`DFW Rate`[tab3$LA=="No"],xlab = "Difference between DFW Rates by Course",main=paste("Histogram of the differences between \nDFW Rates by Courses with/without LA's"))
+
 ```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  tab3$`DFW Rate`[tab3$LA == "Yes"] - tab3$`DFW Rate`[tab3$LA ==     "No"]
+## W = 0.97381, p-value = 0.8655
+```
+
+![](LA_Paper_files/figure-latex/unnamed-chunk-2-1.pdf)<!-- --> 
 
 Since we have a p-value of p = .8655, we fail to reject our hypothesis and thus we have evidence to conclude the difference between DFW rates for courses with and without LA's does follow an approximately normal distribution.
 
 We may now proceed with our testing. We choose to employ a left tailed, two-sample, paired, t-test for differences in DFW rates accross sections based on presence of LA's ($\alpha = .05$). We test against the hypothesis that DFW rates in courses with LA's are equivalent to that of non-LA courses.
 
-```{r}
-LA_DFW<-tab3$`DFW Rate`[tab3$LA=="Yes"]
-NonLA_DFW<-tab3$`DFW Rate`[tab3$LA=="No"]
-t.test(LA_DFW,NonLA_DFW,paired=TRUE,alternative="less")
+
+```
+## 
+## 	Paired t-test
+## 
+## data:  LA_DFW and NonLA_DFW
+## t = 0.8984, df = 17, p-value = 0.8092
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##       -Inf 0.0391512
+## sample estimates:
+## mean of the differences 
+##              0.01333333
 ```
 
 We observe a test statistic of  t = .8984 and an associated p-value of p = .8092. Thus we fail to reject the hypothesis that there are no differences in DFW rates among courses with LA's compared to those without them. This definitely is not the desired result from the LA Program's point of view. Even though the p-value is not significant in either direction, it is noteworthy that we do not even observe a decrease in the mean difference between rates of LA and non-LA courses. In other words, the mean DFW rate in non-LA courses ($\mean{x_{non}} = .23$) is lower than that of LA courses ($\mean{x_{LA}} = .25$).
@@ -105,11 +161,7 @@ We observe a test statistic of  t = .8984 and an associated p-value of p = .8092
 For LA courses to have significantly lower DFW rates, the density would need to be shifted considerably leftward. As is, our distributions are remarkably similar in shape and location.$\\$
 
 
-```{r}
-plot(density(tab3$`DFW Rate`[tab3$LA =="No"]),xlim=c(0,.7),main = "Distribution of DFW Rates for Courses with LA's or without LA's",xlab = "DFW Rate")
-lines(density(tab3$`DFW Rate`[tab3$LA =="Yes"]),col="red")
-legend(x=.5,y=3.5,col = c("Black", "Red"),legend=c("No LA","With LA"),lwd=1)
-```
+![](LA_Paper_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 As can be seen in the density plot above, the distribution of DFW rates for both groups are very similar. For LA's to be seen as more effective, the respective density would need a significant leftward shift.
 
@@ -117,46 +169,93 @@ We would also like to examine the DFW rates in a different context. Accross cour
 
 We will filter our courses by instructor and pair on LA and Non-LA courses. The courses will still be separated, however. In other words, we will compare LA and Non-LA DFW rates by pairing instructors who have taught the same course with and without LA's. This way we can account for teaching style and mitigate that variance. We will assign instructors a number for anonymity.
 
-```{r include=FALSE}
-dat1 = read.csv("PairedData.csv")[,4:15]
-#dat1 = dat1[-1,]
-dat1$DFW = dat1$DF.Number+dat1$W.Number
-attach(dat1)
-```
 
 
-```{r}
-tab1 = aggregate(DFW,list(LA,Instructors),sum)
-tab2 = aggregate(Students,list(LA,Instructors),sum)
-tab3 = cbind(tab1,round(tab1[,3]/tab2[,3],2))
-colnames(tab3) = c("LA","Instructors","DFW Count","DFW Rate")
-kable(tab3,longtable=T, booktabs = T,row.names=F) %>% kable_styling(latex_options = c("repeat_header","HOLD_position","striped", "condensed"), font_size=7)
-```
+
+\begingroup\fontsize{7}{9}\selectfont
+
+\begin{longtable}{lrrr}
+\toprule
+LA & Instructors & DFW Count & DFW Rate\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\textit{(continued)}}\\
+\toprule
+LA & Instructors & DFW Count & DFW Rate\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+\rowcolor{gray!6}  No & 1 & 25 & 0.32\\
+Yes & 1 & 27 & 0.36\\
+\rowcolor{gray!6}  No & 2 & 19 & 0.26\\
+Yes & 2 & 21 & 0.30\\
+\rowcolor{gray!6}  No & 3 & 25 & 0.17\\
+\addlinespace
+Yes & 3 & 42 & 0.29\\
+\rowcolor{gray!6}  No & 4 & 2 & 0.06\\
+Yes & 4 & 3 & 0.09\\
+\rowcolor{gray!6}  No & 5 & 13 & 0.23\\
+Yes & 5 & 13 & 0.23\\
+\addlinespace
+\rowcolor{gray!6}  No & 6 & 29 & 0.33\\
+Yes & 6 & 25 & 0.28\\
+\rowcolor{gray!6}  No & 7 & 20 & 0.56\\
+Yes & 7 & 11 & 0.16\\
+\rowcolor{gray!6}  No & 8 & 42 & 0.49\\
+\addlinespace
+Yes & 8 & 45 & 0.48\\
+\rowcolor{gray!6}  No & 9 & 6 & 0.08\\
+Yes & 9 & 3 & 0.08\\
+\rowcolor{gray!6}  No & 10 & 5 & 0.16\\
+Yes & 10 & 5 & 0.16\\
+\addlinespace
+\rowcolor{gray!6}  No & 11 & 29 & 0.54\\
+Yes & 11 & 50 & 0.47\\
+\rowcolor{gray!6}  No & 12 & 5 & 0.16\\
+Yes & 12 & 5 & 0.16\\
+\rowcolor{gray!6}  No & 13 & 45 & 0.48\\
+\addlinespace
+Yes & 13 & 45 & 0.49\\
+\rowcolor{gray!6}  No & 14 & 6 & 0.19\\
+Yes & 14 & 14 & 0.20\\
+\rowcolor{gray!6}  No & 15 & 14 & 0.16\\
+Yes & 15 & 10 & 0.19\\*
+\end{longtable}
+\endgroup{}
 
 Again, we do not have enough data to assume using parametric tests would be appropriate so a Shapiro-Wilk test is used to determine if a nonparametric approach would be the appropriate route to take. As before with the by-course data, we will perform the test on the differences between the by-instructor DFW rates ($\alpha = .05)$:
 
-```{r}
-shapiro.test(tab3$`DFW Rate`[tab3 == "Yes"]-tab3$`DFW Rate`[tab3$LA == "No"])
-hist(tab3$`DFW Rate`[tab3$LA == "No"],xlab = "Difference between DFW Rates by Instructor",main=paste("Histogram of the differences between \nDFW Rates by Instructors with/without LA's"))
+
 ```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  tab3$`DFW Rate`[tab3 == "Yes"] - tab3$`DFW Rate`[tab3$LA == "No"]
+## W = 0.63002, p-value = 4.869e-05
+```
+
+![](LA_Paper_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 Our p-value, which is nearly 0, is less than $\alpha = .05$ thus we may conclude that the differences between DFW rates controlled by instructor is not approximately normally distributed. As a result, we will use a nonparametric test to test for differences. 
 
 A left-tailed, two-sample, and paired Wilcoxon Signed-Rank test will be used to test against the hypothesis that the average DFW rate in LA courses is equivalent to that of Non-LA courses ($\alpha = .05$).
 
-```{r, warning=F}
-LA_DFW<-tab3$`DFW Rate`[tab3 == "Yes"]
-NonLA_DFW<-tab3$`DFW Rate`[tab3$LA == "No"]
-wilcox.test(LA_DFW,NonLA_DFW,alternative = "less",paired = T)
+
+```
+## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  LA_DFW and NonLA_DFW
+## V = 36, p-value = 0.6225
+## alternative hypothesis: true location shift is less than 0
 ```
 
 With a p-value of p=.6225, we fail to reject our hypothesis that the differences between DFW rates between courses controlled by instructor with/without LA's is in the favor of LA courses. $\\$
 
-```{r}
-plot(density(LA_DFW),xlim=c(0,.7),main = paste("Distribution of DFW Rates for Instructors \n that Taught Sections with LA's or without LA's"),xlab = "DFW Rate")
-lines(density(NonLA_DFW),col="red")
-legend(x=.5,y=2.5,col = c("Black", "Red"),legend=c("No LA","With LA"),lwd=1)
-```
+![](LA_Paper_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 
 ## Conclusions, Interpretations, & Considerations
