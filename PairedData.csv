@@ -1,0 +1,31 @@
+Course,Historical DFW,DFW Cate,Course Name,Term,LA,CRN,Avg. DF RATE ,Avg. DFW RATE,Avg. W RATE ,Students,DF Number,W Number,Instructor,Instructors
+BSC1010C,0.35,High,Gen'l Biology w/Lab I,Fall 2016,No,80844,0.18,0.32,0.14,79,14,11,Palmtag,1
+BSC1010C,0.35,High,Gen'l Biology w/Lab I,Fall 2016,Yes,80799,0.26,0.36,0.09,76,20,7,Palmtag,1
+MAC1105 ,0.28,Mid,College Algebra,Fall 2016,No,81151,0.12,0.26,0.14,73,9,10,Lopez,2
+MAC1105 ,0.28,Mid,College Algebra,Fall 2016,Yes,81099,0.2,0.3,0.1,70,14,7,Lopez,2
+MAT1033 ,0.23,Mid,Intermediate Algebra,Fall 2016,No,81157,0.13,0.17,0.04,146,19,6,Neubek,3
+MAT1033 ,0.23,Mid,Intermediate Algebra,Fall 2016,Yes,81108,0.27,0.29,0.02,145,39,3,Neubek,3
+MGF1106 ,0.13,Low,Finite Mathematics,Fall 2016,No,81080,0.06,0.06,0,32,2,0,B. Johnson,4
+MGF1106 ,0.13,Low,Finite Mathematics,Fall 2016,Yes,81081,0.03,0.09,0.06,32,1,2,B. Johnson,4
+STA2023 ,0.25,Mid,Statistical Methods,Fall 2016,No,81075,0.21,0.23,0.02,56,12,1,Huffman,5
+STA2023 ,0.25,Mid,Statistical Methods,Fall 2016,Yes,81074,0.18,0.23,0.05,56,10,3,Huffman,5
+CHM1045 ,0.37,High,General Chemistry I,Fall 2017,No,82651,0.2,0.33,0.14,87,17,12,R. Campbell,6
+CHM1045 ,0.37,High,General Chemistry I,Fall 2017,Yes,81406,0.11,0.28,0.17,89,10,15,R. Campbell,6
+MAC1147 ,0.24,Mid,Precalculus,Fall 2017,No,82646,0.08,0.56,0.47,36,3,17,S. Maldanado,7
+MAC1147 ,0.24,Mid,Precalculus,Fall 2017,Yes,81102,0.12,0.16,0.28,70,8,3,S. Maldanado,7
+CHM1045 ,0.37,High,General Chemistry I,Fall 2018,No,82651,0.31,0.49,0.17,86,27,15,Campbell,8
+CHM1045 ,0.37,High,General Chemistry I,Fall 2018,Yes,81406,0.3,0.48,0.18,93,28,17,Campbell,8
+EVR1001C,0.08,Low,Intro. Environmental Science,Fall 2018,No,83202,0.04,0.08,0.04,75,3,3,Wilkinson,9
+EVR1001C,0.08,Low,Intro. Environmental Science,Fall 2018,Yes,83350,0.05,0.08,0.03,38,2,1,Wilkinson,9
+STA2122 ,0.17,Low,Social Science Statistics,Fall 2018,No,81180,0.06,0.16,0.09,32,2,3,Southard,10
+STA2122 ,0.17,Low,Social Science Statistics,Fall 2018,Yes,81134,0.13,0.16,0.03,32,4,1,Southard,10
+MAC2233 ,0.39,High,Elementary Calculus,Spring 2017,No,10244,0.19,0.54,0.35,54,10,19,Baxter,11
+MAC2233 ,0.39,High,Elementary Calculus,Spring 2017,Yes,10245,0.14,0.47,0.34,106,14,36,Baxter,11
+PHY2054C,0.16,Low,College Physics w/Lab II,Spring 2017,No,10112,0.03,0.16,0.13,32,1,4,Hutchinson,12
+PHY2054C,0.16,Low,College Physics w/Lab II,Spring 2017,Yes,10111,0.06,0.16,0.09,32,2,3,Hutchinson,12
+CHM1045 ,0.37,High,General Chemistry I,Spring 2018,No,10034,0.23,0.48,0.25,94,22,23,Campbell,13
+CHM1045 ,0.37,High,General Chemistry I,Spring 2018,Yes,10031,0.22,0.49,0.27,92,20,25,Campbell,13
+MAC1147 ,0.24,Mid,Precalculus,Spring 2018,No,10318,0.1,0.19,0.1,31,3,3,Maldonado,14
+MAC1147 ,0.24,Mid,Precalculus,Spring 2018,Yes,10323,0.1,0.2,0.1,70,7,7,Maldonado,14
+STA2023 ,0.25,Mid,Statistical Methods,Spring 2018,No,10260,0.08,0.16,0.084,88,7,7,Awad,15
+STA2023 ,0.25,Mid,Statistical Methods,Spring 2018,Yes,11917,0.06,0.19,0.13,54,3,7,Awad,15
