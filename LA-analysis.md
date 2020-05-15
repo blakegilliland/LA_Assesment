@@ -10,7 +10,6 @@ output:
 ---
 
 
-
 # Exploratory Data Analysis
 
 
@@ -165,7 +164,3 @@ Yes   Statistical Methods                    23       0.21
 ## 38 MGF1106  Spring 2018 0.17666667
 ## 39 STA2023  Spring 2018 0.27230769
 ```
-
-![](LA-analysis_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

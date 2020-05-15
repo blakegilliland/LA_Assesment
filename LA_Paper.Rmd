@@ -5,8 +5,6 @@ indent: true
 landscape geometry: "left=0.4in,right=0.4in,top=0.3in,bottom=0.8in,headheight=1.5cm,includehead" 
 waterbody: NA
 header-includes:
-  - \usepackage{xcolor,colortbl}
-  - \usepackage{longtable}
   - \usepackage{amssymb}
   - \usepackage{indentfirst}
   - \usepackage{setspace}\doublespacing
@@ -25,7 +23,6 @@ output:
     keep_md: true
 bibliography: ref.bib
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)

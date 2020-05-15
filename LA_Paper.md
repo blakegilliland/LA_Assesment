@@ -5,8 +5,6 @@ indent: true
 landscape geometry: "left=0.4in,right=0.4in,top=0.3in,bottom=0.8in,headheight=1.5cm,includehead" 
 waterbody: NA
 header-includes:
-  - \usepackage{xcolor,colortbl}
-  - \usepackage{longtable}
   - \usepackage{amssymb}
   - \usepackage{indentfirst}
   - \usepackage{setspace}\doublespacing
@@ -25,7 +23,6 @@ output:
     keep_md: true
 bibliography: ref.bib
 ---
-
 
 ## Abstract  
 FGCU’s Learning Assistant program began in 2016 and spanned a wide range of STEM disciplines. In the last year, it has expanded to non-STEM classes as well. We are interested in measuring the effectiveness of the program and determining methods of improvement for the future based on DFW rates.

@@ -8,7 +8,6 @@ output:
   pdf_document:
     keep_md: true
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
@@ -83,15 +82,3 @@ legend(x=.5,y=3,col = c("Black", "Red"),legend=c("No","Yes"),lwd=1)
 ```{r}
 aggregate(dat$Avg..DFW.RATE,by=list(dat$Course,dat$Term),mean)
 ```
-
-```{r}
-temp<-aggregate(dat$Avg..DFW.RATE,by=list(dat$Term),mean)
-temp$Group.1=factor(temp$Group.1,levels = c("Fall 2016","Spring 2017","Fall 2017","Spring 2018","Fall 2018"))
-temp2<-temp[c(1,4,2,5,3),]
-plot(y=c(.15,.3),x=c(1,5),type="n")
-
-lines(temp2)
-
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
