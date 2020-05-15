@@ -3,10 +3,25 @@ title: "LA Program"
 author: "Galen I Papkov & Blake Gilliland"
 #header-includes:
   # - \usepackage{}
-date: "1/22/2020"
 output: 
   pdf_document:
     keep_md: true
+header-includes:
+  - \usepackage[table]{xcolor}
+  - \usepackage{longtable}
+  - \usepackage{amssymb}
+  - \usepackage{indentfirst}
+  - \usepackage{setspace}\doublespacing
+  - \usepackage{graphicx}
+  - \usepackage{array}
+  - \usepackage{booktabs}
+  - \usepackage{multirow}
+  - \usepackage{pdflscape}
+  - \usepackage{float}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \newcommand*\conj[1]{\bar{#1}}
+  - \newcommand*\mean[1]{\bar{#1}}
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

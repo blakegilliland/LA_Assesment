@@ -5,6 +5,8 @@ indent: true
 landscape geometry: "left=0.4in,right=0.4in,top=0.3in,bottom=0.8in,headheight=1.5cm,includehead" 
 waterbody: NA
 header-includes:
+  - \usepackage[table]{xcolor}
+  - \usepackage{longtable}
   - \usepackage{amssymb}
   - \usepackage{indentfirst}
   - \usepackage{setspace}\doublespacing
