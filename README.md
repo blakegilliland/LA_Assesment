@@ -2,7 +2,7 @@
 
 Statistical Analysis of FGCU Learning Assistant Program
 
-The research paper is entitled "LA_Paper" and is found in the "LA Data" folder along with the associated .csv files. Also included in this folder is the "LA-analysis" R Markdown file which was where some of the prelimanary analysis was conducted. You'll see similar R code there, but not much text. There are both .md and .Rmd files for those who may or may not use R Markdown.
+The research paper is entitled "LA_Paper" and is found in the "LA Data" folder along with the associated .csv files. Also included in this folder is the "LA-analysis" .Rmd file which was where some of the prelimanary analysis was conducted. You'll see similar R code there, but not much text. There are both .md and .Rmd files for those who may or may not use R Markdown.
 
 The "LA_Paper_files" and the "LA-analysis_files" folders in "LA Data" are automatically generated and contain the visualizations from the respective .Rmd files but as LaTeX output. These are needed to get the visuals in the .md files for those who do not use .Rmd.
 

@@ -1,11 +1,8 @@
 ---
 title: "LA Program"
 author: "Galen I Papkov & Blake Gilliland"
-#header-includes:
-  # - \usepackage{}
-output: 
-  pdf_document:
-    keep_md: true
+always_allow_html: true
+output: github_document
 header-includes:
   - \usepackage[table]{xcolor}
   - \usepackage{longtable}
