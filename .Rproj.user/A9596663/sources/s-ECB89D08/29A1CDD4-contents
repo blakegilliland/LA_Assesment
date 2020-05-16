@@ -1,0 +1,96 @@
+---
+title: "LA Program"
+author: "Galen I Papkov & Blake Gilliland"
+always_allow_html: true
+output: github_document
+header-includes:
+  - \usepackage[table]{xcolor}
+  - \usepackage{longtable}
+  - \usepackage{amssymb}
+  - \usepackage{indentfirst}
+  - \usepackage{setspace}\doublespacing
+  - \usepackage{graphicx}
+  - \usepackage{array}
+  - \usepackage{booktabs}
+  - \usepackage{multirow}
+  - \usepackage{pdflscape}
+  - \usepackage{float}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \newcommand*\conj[1]{\bar{#1}}
+  - \newcommand*\mean[1]{\bar{#1}}
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(dplyr)
+library(xtable)
+library(ggplot2)
+library(knitr)
+
+dat = read.csv("LA_DFW_Data.csv")[,1:14]
+dat = dat[-1,]
+dat$DFW = dat$DF.Number+dat$W.Number
+attach(dat)
+```
+
+# Exploratory Data Analysis
+
+```{r}
+tab1 = aggregate(DFW,list(LA,Course.Name),sum)
+tab2 = aggregate(Students,list(LA,Course.Name),sum)
+tab3 = cbind(tab1,round(tab1[,3]/tab2[,3],2))
+colnames(tab3) = c("LA","Course","DFW.Count","DFW.Rate")
+kable(tab3)
+
+```
+
+## Paired T-test for DFW Rate, pairing by Course. Looking for an LA Effect.
+
+```{r}
+LA_DFW<-tab3$DFW.Rate[tab3$LA=="Yes"]
+NonLA_DFW<-tab3$DFW.Rate[tab3$LA=="No"]
+t.test(LA_DFW,NonLA_DFW,paired=TRUE,alternative="greater")
+```
+
+```{r}
+DFW_Rates<-tab3$DFW.Rate
+hist(DFW_Rates,xlab="DFW Rate",prob=TRUE)
+```
+
+
+
+```{r}
+pair_dat = read.csv("PairedData.csv")
+pair_dat$DFW = pair_dat$DF.Number+pair_dat$W.Number
+attach(pair_dat)
+shapiro.test(pair_dat$Avg..DFW.RATE)
+Instruct_LA<-pair_dat$Avg..DFW.RATE[pair_dat$LA=="Yes"]
+shapiro.test(pair_dat$Avg..DFW.RATE[pair_dat$LA=="Yes"])
+Instruct_No_LA<-pair_dat$Avg..DFW.RATE[pair_dat$LA=="No"]
+shapiro.test(pair_dat$Avg..DFW.RATE[pair_dat$LA=="No"])
+wilcox.test(Instruct_LA,Instruct_No_LA,paired = T,alternative = "greater", exact = F)
+```
+
+```{r}
+plot(density(tab3$DFW.Rate[tab3$LA=="No"]),xlim=c(0,.7),main = "Distribution of DFW Rates for Courses with LA's or without LA's",xlab = "DFW Rate")
+lines(density(tab3$DFW.Rate[tab3$LA=="Yes"]),col="red")
+legend(x=.5,y=3.5,col = c("Black", "Red"),legend=c("No","Yes"),lwd=1)
+```
+
+```{r}
+plot(density(Instruct_LA),xlim=c(0,.7),main = paste("Distribution of DFW Rates for Instructors \n that Taught Sections with LA's or without LA's"),xlab = "DFW Rate")
+lines(density(Instruct_No_LA),col="red")
+legend(x=.5,y=2.5,col = c("Black", "Red"),legend=c("No","Yes"),lwd=1)
+```
+
+```{r}
+plot(density(dat$Avg..DFW.RATE[dat$LA=="Yes"]),xlim=c(0,.7),ylim=c(0,3.5),main = paste("Distribution of DFW Rates Across Sections \n with LA's or without LA's"),xlab = "DFW Rate")
+lines(density(dat$Avg..DFW.RATE[dat$LA=="No"]),col="red")
+legend(x=.5,y=3,col = c("Black", "Red"),legend=c("No","Yes"),lwd=1)
+```
+
+```{r}
+aggregate(dat$Avg..DFW.RATE,by=list(dat$Course,dat$Term),mean)
+```

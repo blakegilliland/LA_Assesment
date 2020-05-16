@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589585678473.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1062178863",
+    "id" : "29A1CDD4",
+    "lastKnownWriteTime" : 1589649814,
+    "last_content_update" : 1589649814230,
+    "path" : "~/Documents/GitHub/LA_Assesment/LA Data/LA-analysis.Rmd",
+    "project_path" : "LA Data/LA-analysis.Rmd",
+    "properties" : {
+        "cursorPosition" : "37,27",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "30"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
